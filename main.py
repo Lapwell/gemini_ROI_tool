@@ -7,10 +7,10 @@ from PyQt5.QtWidgets import *
 import sys
 
 coins = []
-cad_principle = 0
+principle = 0
 
 def parse_file(file_path):
-    global cad_principle
+    global principle
     #Load the spreadsheet and make it active.
     wb = load_workbook(filename = str(file_path).replace("'",'').replace("]", '').replace("[", ''))
     sheet = wb.active
@@ -25,13 +25,13 @@ def parse_file(file_path):
         if "CAD Amount CAD" in col_value:
             for item in column:
                 if "CAD Amount" not in str(item.value) and not isinstance(item.value, type(None)) and float(item.value) <= 0:
-                    cad_principle += float(item.value)
-        cad_principle = round(cad_principle, 2)
-        cad_principle = abs(cad_principle)
+                    principle += float(item.value)
+        principle = round(principle, 2)
+        principle = abs(principle)
 
 
     wb.close()
-    cad_principle = round(cad_principle, 3)
+    principle = round(principle, 3)
 
 
 #This class is for the root window.
@@ -68,7 +68,7 @@ class Window(QWidget):
                 data = item[0:2]
                 data = str(data).replace("[", '').replace("]", '').replace("'", '')
                 self.list_widget.addItem(data)
-        principle = "CAD Principle, " + str(cad_principle)
+        principle = "$$ Principle, " + str(principle)
         self.list_widget.addItem(principle)
 
 
