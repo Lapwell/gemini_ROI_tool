@@ -28,8 +28,6 @@ def parse_file(file_path):
                     principle += float(item.value)
         principle = round(principle, 2)
         principle = abs(principle)
-
-
     wb.close()
     principle = round(principle, 3)
 
@@ -57,6 +55,7 @@ class Window(QWidget):
 
     #This method is for when the relevant button is clicked. It allows the user to select the file they want to parse and then parses it.
     def load_file(self):
+        global principle
         dlg = QFileDialog(self)
         dlg.setFileMode(QFileDialog.AnyFile)
         dlg.setNameFilter("transaction_history (*.xlsx)")
